@@ -40,8 +40,7 @@ namespace NEA2
             {                  
                 wasd = Console.ReadKey(true).KeyChar; //pacman input from user
                 maze1.Move(wasd);
-                Thread.Sleep(50);
-            
+                Thread.Sleep(50);          
             }
             
         }

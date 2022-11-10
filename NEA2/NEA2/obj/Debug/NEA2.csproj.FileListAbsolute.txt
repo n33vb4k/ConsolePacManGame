@@ -20,3 +20,10 @@ D:\NEA2\NEA2\obj\Debug\NEA2.csproj.AssemblyReference.cache
 D:\NEA2\NEA2\obj\Debug\NEA2.csproj.CoreCompileInputs.cache
 D:\NEA2\NEA2\obj\Debug\NEA2.exe
 D:\NEA2\NEA2\obj\Debug\NEA2.pdb
+C:\Users\baksh\OneDrive\Documents\College\NEA FINAL\NEA2\NEA2\bin\Debug\NEA2.exe.config
+C:\Users\baksh\OneDrive\Documents\College\NEA FINAL\NEA2\NEA2\bin\Debug\NEA2.exe
+C:\Users\baksh\OneDrive\Documents\College\NEA FINAL\NEA2\NEA2\bin\Debug\NEA2.pdb
+C:\Users\baksh\OneDrive\Documents\College\NEA FINAL\NEA2\NEA2\obj\Debug\NEA2.csproj.AssemblyReference.cache
+C:\Users\baksh\OneDrive\Documents\College\NEA FINAL\NEA2\NEA2\obj\Debug\NEA2.csproj.CoreCompileInputs.cache
+C:\Users\baksh\OneDrive\Documents\College\NEA FINAL\NEA2\NEA2\obj\Debug\NEA2.exe
+C:\Users\baksh\OneDrive\Documents\College\NEA FINAL\NEA2\NEA2\obj\Debug\NEA2.pdb
