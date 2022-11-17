@@ -14,7 +14,7 @@ namespace NEA2
         
         //add highscore loaded onto start screeen from a text file
         //freeze ghosts powerup (potentialy if i have time)
-        //make pacman move without having to repeatedly press button
+        
         static void Main(string[] args)
         {
             startmenu();
@@ -150,6 +150,8 @@ namespace NEA2
                                                    
                                                    ");
             Console.WriteLine();
+            string hs = File.ReadAllText("highscore.txt");
+            Console.WriteLine("HIGHSCORE: " + hs);
             Console.WriteLine("---Please enter full screen---");
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();

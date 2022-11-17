@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 
 
+
 namespace NEA2
 {
     class Maze
@@ -445,6 +446,12 @@ namespace NEA2
                     Console.Clear();
                     Console.WriteLine("GAME OVER");
                     Console.WriteLine($"Final Score: {pac.score}");
+                    string ss = File.ReadAllText("highscore.txt");
+                    int score = int.Parse(ss);
+                    if (pac.score > score)
+                    {
+                        File.WriteAllText("highscore.txt", pac.score.ToString());
+                    }
                     return true;
                 }               
             }
