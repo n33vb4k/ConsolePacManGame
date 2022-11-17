@@ -11,7 +11,7 @@ namespace NEA2
     class Program
     {
         static int Ghostspeed = 250;
-        
+        static char wasd;
         //add highscore loaded onto start screeen from a text file
         //freeze ghosts powerup (potentialy if i have time)
         
@@ -31,41 +31,100 @@ namespace NEA2
             Task updateghostsBnC = new Task(() => MoveGhostsBnC(blink, cly, maze1)); //Creates thread that will keep moivng the ghosts without relying on the user input
             Task updateghostsInP = new Task(() => MoveGhostsInP(ink, pink, maze1)); 
             Task updatedisplay = new Task(() => UpdateDisp(maze1)); //Creates thread that will keep updating the display
-            char wasd = Console.ReadKey(true).KeyChar;
+            wasd = Console.ReadKey(true).KeyChar;
+            var ts = new CancellationTokenSource();
+            CancellationToken ct = ts.Token;
             updatedisplay.Start(); //starts the threads after pacman has entered the first key
             updateghostsBnC.Start();            
             updateghostsInP.Start();
             wasd = Console.ReadKey(true).KeyChar;
             while (wasd != 'e')
             {
+                if (maze1.CheckEnd())
+                {
+                    break;
+                }
                 if (Console.KeyAvailable)
                 {
                     wasd = Console.ReadKey(true).KeyChar;
+                    if (wasd == 'e')
+                    {
+                        Console.Clear();
+                        break;
+                    }
                     maze1.Move(wasd);
                 }
                 else
                 {
                     maze1.Move(wasd);
                 }
-                Thread.Sleep(170);                  
+                Thread.Sleep(170);
             }
+            GameOver(maze1.finalscore - 100);
             
+            
+        }
+       
+
+        static void GameOver(int fs)
+        {           
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(@"               ('-.     _   .-')       ('-.                           (`-.      ('-.  _  .-')            
+              ( OO ).-.( '.( OO )_   _(  OO)                        _(OO  )_  _(  OO)( \( -O )           
+  ,----.      / . --. / ,--.   ,--.)(,------.       .-'),-----. ,--(_/   ,. \(,------.,------.           
+ '  .-./-')   | \-.  \  |   `.'   |  |  .---'      ( OO'  .-.  '\   \   /(__/ |  .---'|   /`. '          
+ |  |_( O- ).-'-'  |  | |         |  |  |          /   |  | |  | \   \ /   /  |  |    |  /  | |          
+ |  | .--, \ \| |_.'  | |  |'.'|  | (|  '--.       \_) |  |\|  |  \   '   /, (|  '--. |  |_.' |          
+(|  | '. (_/  |  .-.  | |  |   |  |  |  .--'         \ |  | |  |   \     /__) |  .--' |  .  '.'          
+ |  '--'  |   |  | |  | |  |   |  |  |  `---.         `'  '-'  '    \   /     |  `---.|  |\  \ .-..-..-. 
+  `------'    `--' `--' `--'   `--'  `------'           `-----'      `-'      `------'`--' '--'`-'`-'`-' ");
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine($"Your score was: {fs}");
+            int hs = int.Parse(File.ReadAllText("highscore.txt"));
+            if (fs> hs)
+            {
+                Console.WriteLine(@" __   __  ______  __     __       __  __  __  ______  __  __       ______  ______  ______  ______  ______    
+/\ - -.\ \/\  ___\/\ \  _ \ \     /\ \_\ \/\ \/\  ___\/\ \_\ \     /\  ___\/\  ___\/\  __ \/\  == \/\  ___\   
+\ \ \-.  \ \  __\\ \ \/ -.\ \    \ \  __ \ \ \ \ \__ \ \  __ \    \ \___  \ \ \___\ \ \/\ \ \  __<\ \  __\   
+ \ \_\\-\_\ \_____\ \__/-.~\_\    \ \_\ \_\ \_\ \_____\ \_\ \_\    \/\_____\ \_____\ \_____\ \_\ \_\ \_____\ 
+  \/ _ / \/ _ /\/ _____ /\/ _ /   \/ _ /     \/ _ /\/ _ /\/ _ /\/ _____ /\/ _ /\/ _ /     \/ _____ /\/ _____ \
+                                                                                                             ");
+                File.WriteAllText("highscore.txt", fs.ToString());
+            }
+            Thread.Sleep(200);
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+            Environment.Exit(0);
+
         }
         
         static void UpdateDisp(Maze m)
         {
-            while (m.CheckEnd() == false)
+            
+            while (true)
             {
+                if (m.CheckEnd() || wasd == 'e')
+                {
+                    break;
+                }
                 m.Display2();
                 Thread.Sleep(75);
-            }
+            }           
+            
         }
 
         static void MoveGhostsInP(Ghost ink, Ghost pink, Maze m)
         {
-
-            while (m.CheckEnd() == false)
+            
+            while (true)
             {
+                if (m.CheckEnd() || wasd == 'e')
+                {
+                    break;
+                }
+
                 if (m.CheckHit() == true)
                 {
                     Thread.Sleep(1000);
@@ -75,12 +134,18 @@ namespace NEA2
                 m.MoveGhostTrial(pink, m.GetTarget(pink));
                 Thread.Sleep(Ghostspeed);
             }
+            
         }        
         static void MoveGhostsBnC(Ghost blink, Ghost cly, Maze m)
         {
             
-            while (m.CheckEnd() == false)
+            while (true)
             {
+                if (m.CheckEnd() || wasd == 'e')
+                {
+                    break;
+                }
+
                 if (m.CheckHit() == true)
                 {
                     Thread.Sleep(1000);
@@ -89,6 +154,7 @@ namespace NEA2
                 m.MoveGhostTrial(cly, m.GetTarget(cly));                                             
                 Thread.Sleep(Ghostspeed);
             }
+            
             
         }
         static string selectmaze()  //Allows user to select the maze they want to play at the start

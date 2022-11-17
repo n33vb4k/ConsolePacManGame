@@ -23,7 +23,7 @@ namespace NEA2
         private KillBerry kb2 = new KillBerry();
         private KillBerry kb3 = new KillBerry();
         private KillBerry kb4 = new KillBerry();
-
+        public int finalscore;
 
         private Cell[,] Cells;
         public Maze(int noofrows, int noofcols, string mazef, Pacman P, Blinky B, Clyde C, Inky I, Pinky Pi)
@@ -196,11 +196,11 @@ namespace NEA2
                 {
                     if (col == pac.GetCol() && row == pac.GetRow()) //output pacman character at his position
                     {
-                        output += "♦";
+                        output += "ᗧ";
                     }
                     else if (col == blink.GetCol() && row == blink.GetRow() || col == cly.GetCol() && row == cly.GetRow() || col == ink.GetCol() && row == ink.GetRow() || col == pink.GetCol() && row == pink.GetRow()) //output ghost character at their positions
                     {
-                        output += "♠";
+                        output += "ᗣ";
                     }
                     else if (col == kb1.col && row == kb1.row && kb1.visible == true || col == kb2.col && row == kb2.row && kb2.visible == true || col == kb3.col && row == kb3.row && kb3.visible == true || col == kb4.col && row == kb4.row && kb4.visible == true)
                     {
@@ -235,13 +235,15 @@ namespace NEA2
             output += "\n";
             output += "use wasd to move, e to exit";
 
-            WriteStringWithColoredLetter(output, '♦');
+            WriteStringWithColoredLetter(output, 'ᗧ');
             
         }
 
         public void WriteStringWithColoredLetter(string maze, char p) //allows to write certain things with colour
         {
-            var o = maze.IndexOf(p);          
+            int o = maze.IndexOf(p);
+            o = maze.IndexOf(p);
+            o = maze.IndexOf(p);
             Console.Write(maze.Substring(0, o));
             if (pac.kill == true)
 	        {
@@ -438,20 +440,11 @@ namespace NEA2
 
         public bool CheckEnd() //checking if the game is over
         {
-            if ((pac.GetRow() == blink.row && pac.GetCol() == blink.col) || (pac.GetRow() == cly.row && pac.GetCol() == cly.col) || (pac.GetRow() == ink.row && pac.GetCol() == ink.col) || (pac.GetRow() == pink.row && pac.GetCol() == pink.col))
+            if (!pac.kill && ((pac.GetRow() == blink.row && pac.GetCol() == blink.col) || (pac.GetRow() == cly.row && pac.GetCol() == cly.col) || (pac.GetRow() == ink.row && pac.GetCol() == ink.col) || (pac.GetRow() == pink.row && pac.GetCol() == pink.col)))
             {
                 if (pac.lives < 2 )
                 {
-                    pac.score -= 100;
-                    Console.Clear();
-                    Console.WriteLine("GAME OVER");
-                    Console.WriteLine($"Final Score: {pac.score}");
-                    string ss = File.ReadAllText("highscore.txt");
-                    int score = int.Parse(ss);
-                    if (pac.score > score)
-                    {
-                        File.WriteAllText("highscore.txt", pac.score.ToString());
-                    }
+                    finalscore = pac.score;
                     return true;
                 }               
             }
