@@ -29,21 +29,29 @@ namespace NEA2
             Maze maze1 = new Maze(31, 28, mazeoption, pac, blink, cly, ink, pink); 
             maze1.Display2();
             Task updateghostsBnC = new Task(() => MoveGhostsBnC(blink, cly, maze1)); //Creates thread that will keep moivng the ghosts without relying on the user input
-            Task updateghostsInP = new Task(() => MoveGhostsInP(ink, pink, maze1));
-            Task updatedisplay = new Task(() => UpdateDisp(maze1)); //Creates thread that will keep updatin the display
+            Task updateghostsInP = new Task(() => MoveGhostsInP(ink, pink, maze1)); 
+            Task updatedisplay = new Task(() => UpdateDisp(maze1)); //Creates thread that will keep updating the display
             char wasd = Console.ReadKey(true).KeyChar;
             updatedisplay.Start(); //starts the threads after pacman has entered the first key
-            updateghostsBnC.Start();
-            
+            updateghostsBnC.Start();            
             updateghostsInP.Start();
+            wasd = Console.ReadKey(true).KeyChar;
             while (wasd != 'e')
-            {                  
-                wasd = Console.ReadKey(true).KeyChar; //pacman input from user
-                maze1.Move(wasd);
-                Thread.Sleep(50);          
+            {
+                if (Console.KeyAvailable)
+                {
+                    wasd = Console.ReadKey(true).KeyChar;
+                    maze1.Move(wasd);
+                }
+                else
+                {
+                    maze1.Move(wasd);
+                }
+                Thread.Sleep(170);                  
             }
             
         }
+        
         static void UpdateDisp(Maze m)
         {
             while (m.CheckEnd() == false)
@@ -65,11 +73,9 @@ namespace NEA2
 
                 m.MoveGhostTrial(ink, m.GetTarget(ink));
                 m.MoveGhostTrial(pink, m.GetTarget(pink));
-
                 Thread.Sleep(Ghostspeed);
             }
-        }
-        //add counter for how many times this runs, after 7 moves start the other ghost movement inside this thread but with a bool to stay if it has started or not to see if it doesnt crash
+        }        
         static void MoveGhostsBnC(Ghost blink, Ghost cly, Maze m)
         {
             
@@ -80,9 +86,7 @@ namespace NEA2
                     Thread.Sleep(1000);
                 }                
                 m.MoveGhostTrial(blink, m.GetTarget(blink));
-                m.MoveGhostTrial(cly, m.GetTarget(cly));
-                
-                               
+                m.MoveGhostTrial(cly, m.GetTarget(cly));                                             
                 Thread.Sleep(Ghostspeed);
             }
             

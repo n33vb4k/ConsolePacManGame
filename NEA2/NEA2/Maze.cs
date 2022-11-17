@@ -181,6 +181,8 @@ namespace NEA2
         //♠
         //♦
         //◕
+        //ᗧ
+        //ᗣ
         //displays maze to console
         public void Display2() 
         {
@@ -193,11 +195,11 @@ namespace NEA2
                 {
                     if (col == pac.GetCol() && row == pac.GetRow()) //output pacman character at his position
                     {
-                        output += "ᗧ";
+                        output += "♦";
                     }
                     else if (col == blink.GetCol() && row == blink.GetRow() || col == cly.GetCol() && row == cly.GetRow() || col == ink.GetCol() && row == ink.GetRow() || col == pink.GetCol() && row == pink.GetRow()) //output ghost character at their positions
                     {
-                        output += "ᗣ";
+                        output += "♠";
                     }
                     else if (col == kb1.col && row == kb1.row && kb1.visible == true || col == kb2.col && row == kb2.row && kb2.visible == true || col == kb3.col && row == kb3.row && kb3.visible == true || col == kb4.col && row == kb4.row && kb4.visible == true)
                     {
@@ -232,7 +234,7 @@ namespace NEA2
             output += "\n";
             output += "use wasd to move, e to exit";
 
-            WriteStringWithColoredLetter(output, 'ᗧ');
+            WriteStringWithColoredLetter(output, '♦');
             
         }
 
@@ -318,7 +320,7 @@ namespace NEA2
 
             if (pac.kill == true)
             {
-                if (kbtimer == 25)
+                if (kbtimer == 30)
                 {
                     Revertkb();
                 }              

@@ -34,3 +34,11 @@ D:\NEA FINAL\NEA2\NEA2\obj\Debug\NEA2.csproj.AssemblyReference.cache
 D:\NEA FINAL\NEA2\NEA2\obj\Debug\NEA2.csproj.CoreCompileInputs.cache
 D:\NEA FINAL\NEA2\NEA2\obj\Debug\NEA2.exe
 D:\NEA FINAL\NEA2\NEA2\obj\Debug\NEA2.pdb
+\\LAPETUS\HOME\2021\21nb0523\NEA-FINAL commit\NEA2\NEA2\bin\Debug\NEA2.exe.config
+\\LAPETUS\HOME\2021\21nb0523\NEA-FINAL commit\NEA2\NEA2\bin\Debug\NEA2.exe
+\\LAPETUS\HOME\2021\21nb0523\NEA-FINAL commit\NEA2\NEA2\bin\Debug\NEA2.pdb
+\\LAPETUS\HOME\2021\21nb0523\NEA-FINAL commit\NEA2\NEA2\obj\Debug\NEA2.csproj.AssemblyReference.cache
+\\LAPETUS\HOME\2021\21nb0523\NEA-FINAL commit\NEA2\NEA2\obj\Debug\NEA2.csproj.SuggestedBindingRedirects.cache
+\\LAPETUS\HOME\2021\21nb0523\NEA-FINAL commit\NEA2\NEA2\obj\Debug\NEA2.csproj.CoreCompileInputs.cache
+\\LAPETUS\HOME\2021\21nb0523\NEA-FINAL commit\NEA2\NEA2\obj\Debug\NEA2.exe
+\\LAPETUS\HOME\2021\21nb0523\NEA-FINAL commit\NEA2\NEA2\obj\Debug\NEA2.pdb
