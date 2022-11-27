@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NEA2",
+    "\\NEA2\\NEA2"
   ],
-  "SelectedNode": "\\NEA2.sln",
+  "SelectedNode": "\\NEA2\\NEA2\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

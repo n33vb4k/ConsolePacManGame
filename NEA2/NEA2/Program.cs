@@ -11,8 +11,7 @@ namespace NEA2
     class Program
     {
         static int Ghostspeed = 250;
-        static char wasd;
-        //add highscore loaded onto start screeen from a text file
+        static char wasd;       
         //freeze ghosts powerup (potentialy if i have time)
         
         static void Main(string[] args)
@@ -31,9 +30,7 @@ namespace NEA2
             Task updateghostsBnC = new Task(() => MoveGhostsBnC(blink, cly, maze1)); //Creates thread that will keep moivng the ghosts without relying on the user input
             Task updateghostsInP = new Task(() => MoveGhostsInP(ink, pink, maze1)); 
             Task updatedisplay = new Task(() => UpdateDisp(maze1)); //Creates thread that will keep updating the display
-            wasd = Console.ReadKey(true).KeyChar;
-            var ts = new CancellationTokenSource();
-            CancellationToken ct = ts.Token;
+            wasd = Console.ReadKey(true).KeyChar;            
             updatedisplay.Start(); //starts the threads after pacman has entered the first key
             updateghostsBnC.Start();            
             updateghostsInP.Start();
